@@ -3,6 +3,7 @@ import axios from "axios";
 import "../Components/css/homePage.css";
 import Languages from "./languages";
 import TargetLanguage from"./targetLanguagePop"
+import microphone from "../icons/microphone.png"
 // import { type } from "@testing-library/user-event/dist/type";
 
 import SpeechRecognition, {
@@ -90,7 +91,7 @@ export default function HomePage() {
   console.log(inputValue, "input");
   async function translate() {
     const encodedParams = new URLSearchParams();
-    encodedParams.set("q", `${inputValue}`);
+    encodedParams.set("q", `${transcript}`);
     encodedParams.set("target", `${targetLang}`);
     encodedParams.set("source", `${sourceLang}`);
 
@@ -153,13 +154,15 @@ export default function HomePage() {
             <div>
               <textarea
                 name={transcript}
+                value={transcript}
                 id=""
                 placeholder="Enter Text"
                 onChange={onChangeInputValue}
               ></textarea>
-<p>yes:{transcript}</p>
-              <button onClick={startListening}>listening</button>
-              <button onClick={()=>{SpeechRecognition.stopListening()}}>stop</button>
+{/* <p>yes:{transcript}</p> */}
+<img src={microphone} alt="" className="microphone-img" onClick={startListening} />
+              {/* <button onClick={startListening}>listening</button> */}
+              {/* <button onClick={()=>{SpeechRecognition.stopListening()}}>stop</button> */}
             </div>
           </div>
           <div className="translate-div">
